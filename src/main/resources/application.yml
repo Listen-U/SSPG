@@ -1,0 +1,16 @@
+#server:
+#  port: 7700
+#
+#spring:
+#  #开启AOP
+#  aop:
+#    auto: true
+#  http:
+#    encoding:
+#      force: true
+#      charset: UTF-8
+#      enabled: true
+#  #时间戳统一转换
+#  jackson:
+#    date-format: yyyy-MM-dd HH:mm:ss
+#    time-zone: GMT+8
