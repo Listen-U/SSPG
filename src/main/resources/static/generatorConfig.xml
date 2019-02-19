@@ -23,8 +23,8 @@
          <!--<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />-->
         <!--oracle批量插入-->
         <!--<plugin type="com.hui.mybatis.plugins.MysqlBatchUpdatePlugin"/>-->
-        <plugin type="com.listen.sspg.generator.plugins.BatchInsertPlugin"/>
-        <plugin type="com.listen.sspg.generator.plugins.MysqlBatchUpdatePlugin"/>
+        <plugin type="com.listen.generator.method.plugins.BatchInsertPlugin"/>
+        <plugin type="com.listen.generator.method.plugins.MysqlBatchUpdatePlugin"/>
         <!--<plugin type="com.hui.mybatis.plugins.OracleBatchUpdatePlugin"/>-->
         <!--<plugin type="com.hui.mybatis.plugins.BatchDeletePlugin"/>-->
         <!--去掉注释-->
