@@ -23,8 +23,8 @@
          <!--<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />-->
         <!--oracle批量插入-->
         <!--<plugin type="com.hui.mybatis.plugins.MysqlBatchUpdatePlugin"/>-->
-        <plugin type="com.listen.sspg.generator.plugins.OracleBatchInsertPlugin"/>
-        <plugin type="com.listen.sspg.generator.plugins.OracleBatchUpdatePlugin"/>
+        <plugin type="com.listen.sspg.generator.plugins.BatchInsertPlugin"/>
+        <plugin type="com.listen.sspg.generator.plugins.MysqlBatchUpdatePlugin"/>
         <!--<plugin type="com.hui.mybatis.plugins.OracleBatchUpdatePlugin"/>-->
         <!--<plugin type="com.hui.mybatis.plugins.BatchDeletePlugin"/>-->
         <!--去掉注释-->
@@ -38,10 +38,10 @@
                         <!--password="123456">-->
         <!--</jdbcConnection>-->
         <!-- 必须要有的，使用这个配置链接数据库-->
-        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
-                        connectionURL="jdbc.url=jdbc:oracle:thin:@192.168.0.160:1521:winfomsa"
-                        userId="winfomsa"
-                        password="winfomsa">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/HCSP?characterEncoding=utf-8"
+                        userId="root"
+                        password="123456">
             <!-- 这里面可以设置property属性，每一个property属性都设置到配置的Driver上 -->
         </jdbcConnection>
 
@@ -86,8 +86,8 @@
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
         </table>-->
 
-        <table tableName="ShipChooseRule"
-                domainObjectName="ShipChooseRule">
+        <table tableName="blocknoinfo"
+                domainObjectName="blocknoinfo">
                 <!--mapperName="SpaceShipControlRuleTypeMyBatisDao">-->
             <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
             <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
