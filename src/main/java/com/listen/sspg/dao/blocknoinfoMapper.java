@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 @Repository
-public interface blocknoinfoMapper extends BaseMapper<blocknoinfo,blocknoinfoExample,String> {
+public interface blocknoinfoMapper extends BaseMapper<blocknoinfo,blocknoinfoExample,String,blocknoinfo> {
 
 }
