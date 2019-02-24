@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/hcsp?characterEncoding=utf-8&useSSL=true
+    url: jdbc:mysql://localhost:3306/sspg?characterEncoding=utf-8&useSSL=true
     username: root
-    password: 123456
+    password: root
 #配置xml文件路径
 mybatis:
   mapper-locations: classpath:mapper/*.xml

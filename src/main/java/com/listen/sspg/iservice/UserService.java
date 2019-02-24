@@ -1,4 +1,4 @@
 package com.listen.sspg.iservice;
 
-public interface BlockService {
+public interface UserService {
 }
