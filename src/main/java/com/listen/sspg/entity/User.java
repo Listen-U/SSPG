@@ -1,8 +1,10 @@
 package com.listen.sspg.entity;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class User implements Serializable {
+    @NotNull(message = "test")
     private String userId;
 
     private String userName;
