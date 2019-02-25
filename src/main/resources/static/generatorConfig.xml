@@ -65,8 +65,10 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.listen.sspg.mapper"
-                         targetProject="src/main/java" />
+        <!--<sqlMapGenerator targetPackage="com.listen.sspg.mapper"-->
+                         <!--targetProject="src/main/java" />-->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="src/main/resources" />
 
         <javaClientGenerator targetPackage="com.listen.sspg.dao"
                              targetProject="src/main/java" type="XMLMAPPER">
@@ -86,8 +88,8 @@
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
         </table>-->
 
-        <table tableName="User"
-                domainObjectName="User">
+        <table tableName="Shop"
+                domainObjectName="Shop">
                 <!--mapperName="SpaceShipControlRuleTypeMyBatisDao">-->
             <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
             <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
