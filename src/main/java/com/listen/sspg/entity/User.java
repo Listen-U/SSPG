@@ -1,96 +1,49 @@
 package com.listen.sspg.entity;
 
-import java.util.Date;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
-public class User {
-    private String uid;
-    private Date createTime;
-    private String sessionkey;
-    private Integer ubalance;
-    private String skey;
-    private String uaddress;
-    private String uavatar;
-    private Integer ugender;
-    private String uname;
-    private Date updateTime;
+public class User implements Serializable {
+    @NotNull(message = "test")
+    private String userId;
 
-    public String getUid() {
-        return uid;
+    private String userName;
+
+    private String password;
+
+    private String remark;
+
+    private static final long serialVersionUID = 1L;
+
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
-    public String getSessionkey() {
-        return sessionkey;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSessionkey(String sessionkey) {
-        this.sessionkey = sessionkey;
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
-    public Integer getUbalance() {
-        return ubalance;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setUbalance(Integer ubalance) {
-        this.ubalance = ubalance;
-    }
-
-    public String getSkey() {
-        return skey;
-    }
-
-    public void setSkey(String skey) {
-        this.skey = skey;
-    }
-
-    public String getUaddress() {
-        return uaddress;
-    }
-
-    public void setUaddress(String uaddress) {
-        this.uaddress = uaddress;
-    }
-
-    public String getUavatar() {
-        return uavatar;
-    }
-
-    public void setUavatar(String uavatar) {
-        this.uavatar = uavatar;
-    }
-
-    public Integer getUgender() {
-        return ugender;
-    }
-
-    public void setUgender(Integer ugender) {
-        this.ugender = ugender;
-    }
-
-    public String getUname() {
-        return uname;
-    }
-
-    public void setUname(String uname) {
-        this.uname = uname;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 }

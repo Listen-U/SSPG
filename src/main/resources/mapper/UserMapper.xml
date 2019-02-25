@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.listen.sspg.dao.blocknoinfoMapper">
-  <resultMap id="BaseResultMap" type="com.listen.sspg.entity.blocknoinfo">
-    <id column="ID" jdbcType="VARCHAR" property="id" />
-    <result column="MAINID" jdbcType="VARCHAR" property="mainid" />
-    <result column="MARK" jdbcType="VARCHAR" property="mark" />
-    <result column="AREA" jdbcType="VARCHAR" property="area" />
+<mapper namespace="com.listen.sspg.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.listen.sspg.entity.User">
+    <id column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, MAINID, MARK, AREA
+    USER_ID, USER_NAME, PASSWORD, REMARK
   </sql>
-  <select id="selectByExample" parameterType="com.listen.sspg.entity.blocknoinfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.listen.sspg.entity.UserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from blocknoinfo
+    from user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,76 +85,76 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from blocknoinfo
-    where ID = #{id,jdbcType=VARCHAR}
+    from user
+    where USER_ID = #{userId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from blocknoinfo
-    where ID = #{id,jdbcType=VARCHAR}
+    delete from user
+    where USER_ID = #{userId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.listen.sspg.entity.blocknoinfoExample">
-    delete from blocknoinfo
+  <delete id="deleteByExample" parameterType="com.listen.sspg.entity.UserExample">
+    delete from user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.listen.sspg.entity.blocknoinfo">
-    insert into blocknoinfo (ID, MAINID, MARK, 
-      AREA)
-    values (#{id,jdbcType=VARCHAR}, #{mainid,jdbcType=VARCHAR}, #{mark,jdbcType=VARCHAR}, 
-      #{area,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.listen.sspg.entity.User">
+    insert into user (USER_ID, USER_NAME, PASSWORD, 
+      REMARK)
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.listen.sspg.entity.blocknoinfo">
-    insert into blocknoinfo
+  <insert id="insertSelective" parameterType="com.listen.sspg.entity.User">
+    insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        ID,
+      <if test="userId != null">
+        USER_ID,
       </if>
-      <if test="mainid != null">
-        MAINID,
+      <if test="userName != null">
+        USER_NAME,
       </if>
-      <if test="mark != null">
-        MARK,
+      <if test="password != null">
+        PASSWORD,
       </if>
-      <if test="area != null">
-        AREA,
+      <if test="remark != null">
+        REMARK,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="mainid != null">
-        #{mainid,jdbcType=VARCHAR},
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="mark != null">
-        #{mark,jdbcType=VARCHAR},
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
       </if>
-      <if test="area != null">
-        #{area,jdbcType=VARCHAR},
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.listen.sspg.entity.blocknoinfoExample" resultType="java.lang.Long">
-    select count(*) from blocknoinfo
+  <select id="countByExample" parameterType="com.listen.sspg.entity.UserExample" resultType="java.lang.Long">
+    select count(*) from user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update blocknoinfo
+    update user
     <set>
-      <if test="record.id != null">
-        ID = #{record.id,jdbcType=VARCHAR},
+      <if test="record.userId != null">
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
       </if>
-      <if test="record.mainid != null">
-        MAINID = #{record.mainid,jdbcType=VARCHAR},
+      <if test="record.userName != null">
+        USER_NAME = #{record.userName,jdbcType=VARCHAR},
       </if>
-      <if test="record.mark != null">
-        MARK = #{record.mark,jdbcType=VARCHAR},
+      <if test="record.password != null">
+        PASSWORD = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.area != null">
-        AREA = #{record.area,jdbcType=VARCHAR},
+      <if test="record.remark != null">
+        REMARK = #{record.remark,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -162,101 +162,101 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update blocknoinfo
-    set ID = #{record.id,jdbcType=VARCHAR},
-      MAINID = #{record.mainid,jdbcType=VARCHAR},
-      MARK = #{record.mark,jdbcType=VARCHAR},
-      AREA = #{record.area,jdbcType=VARCHAR}
+    update user
+    set USER_ID = #{record.userId,jdbcType=VARCHAR},
+      USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      PASSWORD = #{record.password,jdbcType=VARCHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.listen.sspg.entity.blocknoinfo">
-    update blocknoinfo
+  <update id="updateByPrimaryKeySelective" parameterType="com.listen.sspg.entity.User">
+    update user
     <set>
-      <if test="mainid != null">
-        MAINID = #{mainid,jdbcType=VARCHAR},
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="mark != null">
-        MARK = #{mark,jdbcType=VARCHAR},
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="area != null">
-        AREA = #{area,jdbcType=VARCHAR},
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
-    where ID = #{id,jdbcType=VARCHAR}
+    where USER_ID = #{userId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.listen.sspg.entity.blocknoinfo">
-    update blocknoinfo
-    set MAINID = #{mainid,jdbcType=VARCHAR},
-      MARK = #{mark,jdbcType=VARCHAR},
-      AREA = #{area,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.listen.sspg.entity.User">
+    update user
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where USER_ID = #{userId,jdbcType=VARCHAR}
   </update>
   <insert id="insertBatch" parameterType="java.util.List">
-    insert into blocknoinfo (
-    ID,
-    MAINID,
-    MARK,
-    AREA
+    insert into user (
+    USER_ID,
+    USER_NAME,
+    PASSWORD,
+    REMARK
     )
     values
     <foreach collection="list" index="index" item="item" separator=",">
       (
-      #{item.id,jdbcType=VARCHAR},
-      #{item.mainid,jdbcType=VARCHAR},
-      #{item.mark,jdbcType=VARCHAR},
-      #{item.area,jdbcType=VARCHAR}
+      #{item.userId,jdbcType=VARCHAR},
+      #{item.userName,jdbcType=VARCHAR},
+      #{item.password,jdbcType=VARCHAR},
+      #{item.remark,jdbcType=VARCHAR}
       )
     </foreach>
   </insert>
   <update id="updateBatch" parameterType="java.util.List">
-    update blocknoinfo 
+    update user 
     <trim prefix="set" suffixOverrides=",">
-      <trim prefix="ID =case ID" suffix="end,">
+      <trim prefix="USER_ID =case USER_ID" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          <if test="item.id !=null ">
-            when #{item.id,jdbcType=VARCHAR} then #{item.id,jdbcType=VARCHAR}
+          <if test="item.userId !=null ">
+            when #{item.userId,jdbcType=VARCHAR} then #{item.userId,jdbcType=VARCHAR}
           </if>
-          <if test="item.id ==null ">
-            when #{item.id,jdbcType=VARCHAR} then blocknoinfo.ID
+          <if test="item.userId ==null ">
+            when #{item.userId,jdbcType=VARCHAR} then user.USER_ID
           </if>
         </foreach>
       </trim>
-      <trim prefix="MAINID =case ID" suffix="end,">
+      <trim prefix="USER_NAME =case USER_ID" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          <if test="item.mainid !=null ">
-            when #{item.id,jdbcType=VARCHAR} then #{item.mainid,jdbcType=VARCHAR}
+          <if test="item.userName !=null ">
+            when #{item.userId,jdbcType=VARCHAR} then #{item.userName,jdbcType=VARCHAR}
           </if>
-          <if test="item.mainid ==null ">
-            when #{item.id,jdbcType=VARCHAR} then blocknoinfo.MAINID
+          <if test="item.userName ==null ">
+            when #{item.userId,jdbcType=VARCHAR} then user.USER_NAME
           </if>
         </foreach>
       </trim>
-      <trim prefix="MARK =case ID" suffix="end,">
+      <trim prefix="PASSWORD =case USER_ID" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          <if test="item.mark !=null ">
-            when #{item.id,jdbcType=VARCHAR} then #{item.mark,jdbcType=VARCHAR}
+          <if test="item.password !=null ">
+            when #{item.userId,jdbcType=VARCHAR} then #{item.password,jdbcType=VARCHAR}
           </if>
-          <if test="item.mark ==null ">
-            when #{item.id,jdbcType=VARCHAR} then blocknoinfo.MARK
+          <if test="item.password ==null ">
+            when #{item.userId,jdbcType=VARCHAR} then user.PASSWORD
           </if>
         </foreach>
       </trim>
-      <trim prefix="AREA =case ID" suffix="end,">
+      <trim prefix="REMARK =case USER_ID" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          <if test="item.area !=null ">
-            when #{item.id,jdbcType=VARCHAR} then #{item.area,jdbcType=VARCHAR}
+          <if test="item.remark !=null ">
+            when #{item.userId,jdbcType=VARCHAR} then #{item.remark,jdbcType=VARCHAR}
           </if>
-          <if test="item.area ==null ">
-            when #{item.id,jdbcType=VARCHAR} then blocknoinfo.AREA
+          <if test="item.remark ==null ">
+            when #{item.userId,jdbcType=VARCHAR} then user.REMARK
           </if>
         </foreach>
       </trim>
     </trim>
-    where ID in(
+    where USER_ID in(
     <foreach collection="list" index="index" item="item" separator=",">
-      #{item.id,jdbcType=VARCHAR}
+      #{item.userId,jdbcType=VARCHAR}
     </foreach>
     )
   </update>
