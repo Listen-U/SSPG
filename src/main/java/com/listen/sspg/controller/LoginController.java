@@ -1,21 +1,18 @@
 package com.listen.sspg.controller;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.listen.sspg.entity.User;
-import com.mysql.jdbc.StringUtils;
+import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import static com.listen.sspg.tools.LoginUtils.getSessionKeyOrOpenId;
-import static com.listen.sspg.tools.LoginUtils.getUserInfo;
 
+import org.slf4j.Logger;
 @RestController
 @RequestMapping("/login")
 public class LoginController {
@@ -28,7 +25,6 @@ public class LoginController {
                                       @RequestParam(value = "encrypteData",required = false) String encrypteData,
                                       @RequestParam(value = "iv",required = false) String iv){
 //        log.info( "Start get SessionKey" );
-
 
         Map<String,Object> map = new HashMap<String, Object>(  );
         System.out.println("用户非敏感信息"+rawData);
