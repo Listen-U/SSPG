@@ -9,14 +9,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.listen.sspg.basecore.ApiAcceptObj;
 import com.listen.sspg.basecore.ApiReturnObj;
 import com.listen.sspg.entity.LoginInfo;
-import com.listen.sspg.entity.UserInfo;
+import com.listen.sspg.entity.User;
 import com.listen.sspg.tools.FastJsonUtil;
 import com.listen.sspg.tools.RedisUtil;
 import com.mysql.jdbc.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
 import static com.listen.sspg.tools.LoginUtils.getSessionKeyOrOpenId;
 import static com.listen.sspg.tools.LoginUtils.getUserInfo;
 
@@ -28,7 +26,7 @@ import static com.listen.sspg.tools.LoginUtils.getUserInfo;
 @Service
 public class LoginServiceImpl {
     @Autowired
-    private UserInfoServiceImpl userInfoService;
+    private UserServiceImpl userService;
     @Autowired
     public RedisUtil redisUtil;
 
@@ -51,25 +49,25 @@ public class LoginServiceImpl {
             String sessionKey = SessionKeyOpenId.getString("session_key");
             System.out.println("Openid="+openid+",session_key="+sessionKey);
 
-            UserInfo user = userInfoService.findByOpenid(openid);
+            User user = userService.findByOpenid(openid);
             //uuid生成唯一key
             String skey = UUID.randomUUID().toString();
             if(user==null){
                 //入库
-                user = new UserInfo();
-                user.setUid(openid);
+                user = new User();
+                user.setUserId(openid);
                 user.setCreateTime(new Date());
-                user.setSessionkey(sessionKey);
-                user.setUbalance(0);
+                user.setSessionKey(sessionKey);
+                user.setBalance(0);
                 user.setSkey(skey);
-                user.setUaddress(rawDataJson.getString("country")+" "+
+                user.setAddress(rawDataJson.getString("country")+" "+
                                     rawDataJson.getString("province")+" "+
                                     rawDataJson.getString("city"));
-                user.setUavatar(rawDataJson.getString("avatarUrl"));
-                user.setUgender(Integer.parseInt(rawDataJson.getString("gender")));
-                user.setUname(rawDataJson.getString("nickName"));
+                user.setAvatar(rawDataJson.getString("avatarUrl"));
+                user.setGender(Integer.parseInt(rawDataJson.getString("gender")));
+                user.setUserName(rawDataJson.getString("nickName"));
                 user.setUpdateTime(new Date());
-                userInfoService.insert(user);
+                userService.insert(user);
             }else {
                 System.out.println("用户openid已存在,不需要插入");
             }
@@ -90,7 +88,7 @@ public class LoginServiceImpl {
             map.put("result","0" );
             JSONObject userInfo = getUserInfo(loginInfo.getEncrypteData(),sessionKey, loginInfo.getIv());
             System.out.println("根据解密算法获取的userInfo="+userInfo);
-            userInfo.put("balance",user.getUbalance());
+            userInfo.put("balance",user.getBalance());
             map.put("userInfo",userInfo);
             apiReturnObj.setDatas(map);
         } else {

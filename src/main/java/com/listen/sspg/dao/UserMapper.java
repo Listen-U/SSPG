@@ -7,6 +7,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+/**
+ * @author Listen
+ * @date 2019/2/26
+ */
 @Repository
 public interface UserMapper extends BaseMapper<User,UserExample,String,User> {
 }

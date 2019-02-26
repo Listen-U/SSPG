@@ -88,8 +88,8 @@
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
         </table>-->
 
-        <table tableName="Shop"
-                domainObjectName="Shop">
+        <table tableName="User"
+                domainObjectName="User">
                 <!--mapperName="SpaceShipControlRuleTypeMyBatisDao">-->
             <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
             <!--enableSelectByExample="false" selectByExampleQueryId="false">-->

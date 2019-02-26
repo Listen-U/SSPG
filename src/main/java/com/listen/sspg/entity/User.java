@@ -1,17 +1,54 @@
 package com.listen.sspg.entity;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
 
+/**
+ * 用户信息
+ * @author
+ * @date 2019/2/26
+ */
 public class User implements Serializable {
-    @NotNull(message = "test")
+    /**
+     * 用户id
+     */
     private String userId;
-
+    /**
+     * 用户昵称
+     */
     private String userName;
-
-    private String password;
-
-    private String remark;
+    /**
+     *
+     */
+    private String sessionKey;
+    /**
+     *
+     */
+    private Integer balance;
+    /**
+     *
+     */
+    private String skey;
+    /**
+     * 用户位置
+     */
+    private String address;
+    /**
+     * 用户头像
+     */
+    private String avatar;
+    /**
+     * 用户性别
+     */
+    private Integer gender;
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -31,19 +68,67 @@ public class User implements Serializable {
         this.userName = userName == null ? null : userName.trim();
     }
 
-    public String getPassword() {
-        return password;
+    public String getSessionKey() {
+        return sessionKey;
     }
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+    public void setSessionKey(String sessionKey) {
+        this.sessionKey = sessionKey == null ? null : sessionKey.trim();
     }
 
-    public String getRemark() {
-        return remark;
+    public Integer getBalance() {
+        return balance;
     }
 
-    public void setRemark(String remark) {
-        this.remark = remark == null ? null : remark.trim();
+    public void setBalance(Integer balance) {
+        this.balance = balance;
+    }
+
+    public String getSkey() {
+        return skey;
+    }
+
+    public void setSkey(String skey) {
+        this.skey = skey == null ? null : skey.trim();
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar == null ? null : avatar.trim();
+    }
+
+    public Integer getGender() {
+        return gender;
+    }
+
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

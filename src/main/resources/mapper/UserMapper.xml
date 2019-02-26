@@ -4,6 +4,432 @@
   <resultMap id="BaseResultMap" type="com.listen.sspg.entity.User">
     <id column="USER_ID" jdbcType="VARCHAR" property="userId" />
     <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="SESSION_KEY" jdbcType="VARCHAR" property="sessionKey" />
+    <result column="BALANCE" jdbcType="INTEGER" property="balance" />
+    <result column="SKEY" jdbcType="VARCHAR" property="skey" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="AVATAR" jdbcType="VARCHAR" property="avatar" />
+    <result column="GENDER" jdbcType="INTEGER" property="gender" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    USER_ID, USER_NAME, SESSION_KEY, BALANCE, SKEY, ADDRESS, AVATAR, GENDER, CREATE_TIME, 
+    UPDATE_TIME
+  </sql>
+  <select id="selectByExample" parameterType="com.listen.sspg.entity.UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.listen.sspg.entity.UserExample">
+    delete from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.listen.sspg.entity.User">
+    insert into user (USER_ID, USER_NAME, SESSION_KEY, 
+      BALANCE, SKEY, ADDRESS, 
+      AVATAR, GENDER, CREATE_TIME, 
+      UPDATE_TIME)
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{sessionKey,jdbcType=VARCHAR}, 
+      #{balance,jdbcType=INTEGER}, #{skey,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{avatar,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.listen.sspg.entity.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="sessionKey != null">
+        SESSION_KEY,
+      </if>
+      <if test="balance != null">
+        BALANCE,
+      </if>
+      <if test="skey != null">
+        SKEY,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="avatar != null">
+        AVATAR,
+      </if>
+      <if test="gender != null">
+        GENDER,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionKey != null">
+        #{sessionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=INTEGER},
+      </if>
+      <if test="skey != null">
+        #{skey,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.listen.sspg.entity.UserExample" resultType="java.lang.Long">
+    select count(*) from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user
+    <set>
+      <if test="record.userId != null">
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null">
+        USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sessionKey != null">
+        SESSION_KEY = #{record.sessionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.balance != null">
+        BALANCE = #{record.balance,jdbcType=INTEGER},
+      </if>
+      <if test="record.skey != null">
+        SKEY = #{record.skey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.avatar != null">
+        AVATAR = #{record.avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null">
+        GENDER = #{record.gender,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user
+    set USER_ID = #{record.userId,jdbcType=VARCHAR},
+      USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      SESSION_KEY = #{record.sessionKey,jdbcType=VARCHAR},
+      BALANCE = #{record.balance,jdbcType=INTEGER},
+      SKEY = #{record.skey,jdbcType=VARCHAR},
+      ADDRESS = #{record.address,jdbcType=VARCHAR},
+      AVATAR = #{record.avatar,jdbcType=VARCHAR},
+      GENDER = #{record.gender,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.listen.sspg.entity.User">
+    update user
+    <set>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionKey != null">
+        SESSION_KEY = #{sessionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        BALANCE = #{balance,jdbcType=INTEGER},
+      </if>
+      <if test="skey != null">
+        SKEY = #{skey,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        AVATAR = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        GENDER = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.listen.sspg.entity.User">
+    update user
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      SESSION_KEY = #{sessionKey,jdbcType=VARCHAR},
+      BALANCE = #{balance,jdbcType=INTEGER},
+      SKEY = #{skey,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      AVATAR = #{avatar,jdbcType=VARCHAR},
+      GENDER = #{gender,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into user (
+    USER_ID,
+    USER_NAME,
+    SESSION_KEY,
+    BALANCE,
+    SKEY,
+    ADDRESS,
+    AVATAR,
+    GENDER,
+    CREATE_TIME,
+    UPDATE_TIME
+    )
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (
+      #{item.userId,jdbcType=VARCHAR},
+      #{item.userName,jdbcType=VARCHAR},
+      #{item.sessionKey,jdbcType=VARCHAR},
+      #{item.balance,jdbcType=INTEGER},
+      #{item.skey,jdbcType=VARCHAR},
+      #{item.address,jdbcType=VARCHAR},
+      #{item.avatar,jdbcType=VARCHAR},
+      #{item.gender,jdbcType=INTEGER},
+      #{item.createTime,jdbcType=TIMESTAMP},
+      #{item.updateTime,jdbcType=TIMESTAMP}
+      )
+    </foreach>
+  </insert>
+  <update id="updateBatch" parameterType="java.util.List">
+    update user 
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="USER_ID =case USER_ID" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userId !=null ">
+            when #{item.userId,jdbcType=VARCHAR} then #{item.userId,jdbcType=VARCHAR}
+          </if>
+          <if test="item.userId ==null ">
+            when #{item.userId,jdbcType=VARCHAR} then user.USER_ID
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="USER_NAME =case USER_ID" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.userName !=null ">
+            when #{item.userId,jdbcType=VARCHAR} then #{item.userName,jdbcType=VARCHAR}
+          </if>
+          <if test="item.userName ==null ">
+            when #{item.userId,jdbcType=VARCHAR} then user.USER_NAME
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="SESSION_KEY =case USER_ID" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sessionKey !=null ">
+            when #{item.userId,jdbcType=VARCHAR} then #{item.sessionKey,jdbcType=VARCHAR}
+          </if>
+          <if test="item.sessionKey ==null ">
+            when #{item.userId,jdbcType=VARCHAR} then user.SESSION_KEY
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="BALANCE =case USER_ID" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.balance !=null ">
+            when #{item.userId,jdbcType=VARCHAR} then #{item.balance,jdbcType=INTEGER}
+          </if>
+          <if test="item.balance ==null ">
+            when #{item.userId,jdbcType=VARCHAR} then user.BALANCE
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="SKEY =case USER_ID" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.skey !=null ">
+            when #{item.userId,jdbcType=VARCHAR} then #{item.skey,jdbcType=VARCHAR}
+          </if>
+          <if test="item.skey ==null ">
+            when #{item.userId,jdbcType=VARCHAR} then user.SKEY
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="ADDRESS =case USER_ID" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.address !=null ">
+            when #{item.userId,jdbcType=VARCHAR} then #{item.address,jdbcType=VARCHAR}
+          </if>
+          <if test="item.address ==null ">
+            when #{item.userId,jdbcType=VARCHAR} then user.ADDRESS
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="AVATAR =case USER_ID" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.avatar !=null ">
+            when #{item.userId,jdbcType=VARCHAR} then #{item.avatar,jdbcType=VARCHAR}
+          </if>
+          <if test="item.avatar ==null ">
+            when #{item.userId,jdbcType=VARCHAR} then user.AVATAR
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="GENDER =case USER_ID" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.gender !=null ">
+            when #{item.userId,jdbcType=VARCHAR} then #{item.gender,jdbcType=INTEGER}
+          </if>
+          <if test="item.gender ==null ">
+            when #{item.userId,jdbcType=VARCHAR} then user.GENDER
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="CREATE_TIME =case USER_ID" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime !=null ">
+            when #{item.userId,jdbcType=VARCHAR} then #{item.createTime,jdbcType=TIMESTAMP}
+          </if>
+          <if test="item.createTime ==null ">
+            when #{item.userId,jdbcType=VARCHAR} then user.CREATE_TIME
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="UPDATE_TIME =case USER_ID" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateTime !=null ">
+            when #{item.userId,jdbcType=VARCHAR} then #{item.updateTime,jdbcType=TIMESTAMP}
+          </if>
+          <if test="item.updateTime ==null ">
+            when #{item.userId,jdbcType=VARCHAR} then user.UPDATE_TIME
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where USER_ID in(
+    <foreach collection="list" index="index" item="item" separator=",">
+      #{item.userId,jdbcType=VARCHAR}
+    </foreach>
+    )
+  </update>
+  <resultMap id="BaseResultMap" type="com.listen.sspg.entity.User">
+    <id column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
     <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
     <result column="REMARK" jdbcType="VARCHAR" property="remark" />
   </resultMap>
