@@ -45,11 +45,11 @@ public class LoginServiceImpl {
             System.out.println("签名"+loginInfo.getSignature());
             JSONObject SessionKeyOpenId = getSessionKeyOrOpenId(loginInfo.getCode());
 
-            System.out.println("post请求获取的SessionAndopenId="+SessionKeyOpenId);
+            System.out.println("Post请求获取的SessionAndopenId="+SessionKeyOpenId);
             String openid = SessionKeyOpenId.getString("openid");
 
             String sessionKey = SessionKeyOpenId.getString("session_key");
-            System.out.println("openid="+openid+",session_key="+sessionKey);
+            System.out.println("Openid="+openid+",session_key="+sessionKey);
 
             UserInfo user = userInfoService.findByOpenid(openid);
             //uuid生成唯一key
