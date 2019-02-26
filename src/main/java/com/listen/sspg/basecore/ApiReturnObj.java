@@ -4,6 +4,14 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.github.pagehelper.util.StringUtil;
+
+/**
+ * 接口统一返回对象
+ * @author Listen
+ * @date 2019/2/26
+ * @param <T>
+ */
 @SuppressWarnings("unchecked")
 public class ApiReturnObj<T> implements Serializable {
 
@@ -115,15 +123,11 @@ public class ApiReturnObj<T> implements Serializable {
 		}
 
 	}
-
+*/
 	public ApiReturnObj(int code) {
 		super();
 		this.code = code;
-		String message = ErrorCodePropertiesUtil.getErrorCodeValueByKeyI18n(String.valueOf(code));
-		if (!StringUtil.isEmpty(message)) {
-			this.msg = message;
-		}
-	}*/
+	}
 
 	public int getCode() {
 		return code;

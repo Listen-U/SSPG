@@ -13,6 +13,11 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
 
+/**
+ * Redis操作工具类
+ * @author Listen
+ * @date 2019/2/26
+ */
 @Service
 public class RedisUtil {
     @Autowired
@@ -68,8 +73,9 @@ public class RedisUtil {
      */
     public void removePattern(final String pattern) {
         Set<Serializable> keys = redisTemplate.keys(pattern);
-        if (keys.size() > 0)
+        if (keys.size() > 0) {
             redisTemplate.delete(keys);
+        }
     }
     /**
      * 删除对应的value

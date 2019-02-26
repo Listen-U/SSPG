@@ -5,8 +5,8 @@ spring:
     username: root
     password: root
 redis:
-  host: 106.14.72.179
-  password: redispassword
+  host: 127.0.0.1
+#  password: redispassword
   port: 6379
   pool:
     max-idle: 100

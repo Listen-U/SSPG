@@ -20,21 +20,26 @@ import com.alibaba.fastjson.JSONObject;
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
+/**
+ * WX登录工具类
+ * @author Listen
+ * @date 2019/2/26
+ */
 public class LoginUtils {
     public static JSONObject getSessionKeyOrOpenId(String code){
-        //微信端登录code
-        String wxCode = code;
         String requestUrl = "https://api.weixin.qq.com/sns/jscode2session";
-        Map<String,String> requestUrlParam = new HashMap<String, String>(  );
-        requestUrlParam.put( "appid","你的小程序appId" );//小程序appId
-        requestUrlParam.put( "secret","你的小程序appSecret" );
-        requestUrlParam.put( "js_code",wxCode );//小程序端返回的code
-        requestUrlParam.put( "grant_type","authorization_code" );//默认参数
+        Map<String,String> requestParam = new HashMap<String, String>(16);
+        //小程序appId
+        requestParam.put("appid","你的小程序appId");
+        requestParam.put("secret","你的小程序appSecret");
+        //小程序端返回的code
+        requestParam.put("js_code",code);
+        //默认参数
+        requestParam.put("grant_type","authorization_code");
 
         //发送post请求读取调用微信接口获取openid用户唯一标识
-        JSONObject jsonObject = JSON.parseObject( sendPost( requestUrl,requestUrlParam ));
+        JSONObject jsonObject = JSON.parseObject(sendPost(requestUrl,requestParam));
         return jsonObject;
-//        return null;
     }
     /**
      * 向指定 URL 发送POST方法的请求
@@ -47,15 +52,12 @@ public class LoginUtils {
         PrintWriter out = null;
         BufferedReader in = null;
         String result = "";
-
         String param = "";
         Iterator<String> it = paramMap.keySet().iterator();
-
         while(it.hasNext()) {
             String key = it.next();
             param += key + "=" + paramMap.get(key) + "&";
         }
-
         try {
             URL realUrl = new URL(url);
             // 打开和URL之间的连接
@@ -81,10 +83,8 @@ public class LoginUtils {
                 result += line;
             }
         } catch (Exception e) {
-//            log.error(e.getMessage(), e);
-        }
-        //使用finally块来关闭输出流、输入流
-        finally{
+            // log.error(e.getMessage(), e);
+        }finally{//使用finally块来关闭输出流、输入流
             try{
                 if(out!=null){
                     out.close();
@@ -92,13 +92,20 @@ public class LoginUtils {
                 if(in!=null){
                     in.close();
                 }
-            }
-            catch(IOException ex){
+            }catch(IOException ex){
                 ex.printStackTrace();
             }
         }
         return result;
     }
+
+    /**
+     * 获取用户信息
+     * @param encryptedData 包括敏感数据在内的完整用户信息的加密数据
+     * @param sessionKey 数据进行加密签名的密钥
+     * @param iv 加密算法的初始向量
+     * @return
+     */
     public static JSONObject getUserInfo(String encryptedData,String sessionKey,String iv){
         // 被加密的数据
         byte[] dataByte = Base64.decode(encryptedData);
@@ -122,7 +129,8 @@ public class LoginUtils {
             SecretKeySpec spec = new SecretKeySpec(keyByte, "AES");
             AlgorithmParameters parameters = AlgorithmParameters.getInstance("AES");
             parameters.init(new IvParameterSpec(ivByte));
-            cipher.init( Cipher.DECRYPT_MODE, spec, parameters);// 初始化
+            // 初始化
+            cipher.init( Cipher.DECRYPT_MODE, spec, parameters);
             byte[] resultByte = cipher.doFinal(dataByte);
             if (null != resultByte && resultByte.length > 0) {
                 String result = new String(resultByte, "UTF-8");
