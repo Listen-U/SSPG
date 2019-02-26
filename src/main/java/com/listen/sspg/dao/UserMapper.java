@@ -4,6 +4,8 @@ import com.listen.sspg.basecore.BaseMapper;
 import com.listen.sspg.entity.User;
 import com.listen.sspg.entity.UserExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
