@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
 
         return "";
     }
-    public String savePicture(HttpServletRequest request, @RequestParam(value = "file", required = false) MultipartFile file) {
+    public String savePicture(HttpServletRequest request,MultipartFile file) {
         try {
             request.setCharacterEncoding("UTF-8");
 //        logger.info("执行图片上传");
