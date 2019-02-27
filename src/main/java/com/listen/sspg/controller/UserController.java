@@ -63,10 +63,10 @@ public class UserController {
      * 测试保存图片
      * @return
      */
-    @RequestMapping(value = "/savePicture", method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/testPicture", method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public String savePicture(HttpServletRequest request, @RequestParam(value = "file", required = false) MultipartFile file) {
-        String result = userService.savePicture(request,file);
+    public String testPicture(HttpServletRequest request, @RequestParam(value = "file", required = false) MultipartFile file) {
+        String result = userService.testPicture(request,file);
         return result;
     }
 
