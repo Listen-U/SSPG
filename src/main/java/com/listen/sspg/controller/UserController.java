@@ -1,8 +1,6 @@
 package com.listen.sspg.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.Writer;
-
 import com.listen.sspg.entity.User;
 import com.listen.sspg.service.UserServiceImpl;
 import com.listen.sspg.tools.RedisUtil;

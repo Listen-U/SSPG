@@ -35,8 +35,9 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
  * @author Listen
  * @date 2019/2/26
  */
-@Service
+
 @PropertySource("classpath:static/fileConfig.properties")
+@Service
 public class UserServiceImpl implements UserService {
     @Value("${filePath}")
     private String filePath;
