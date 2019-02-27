@@ -1,10 +1,14 @@
 package com.listen.sspg.controller;
 
 import javax.servlet.http.HttpServletRequest;
+
+import com.listen.sspg.basecore.ApiAcceptObj;
+import com.listen.sspg.basecore.ApiReturnObj;
 import com.listen.sspg.entity.User;
 import com.listen.sspg.service.UserServiceImpl;
 import com.listen.sspg.tools.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,6 +46,17 @@ public class UserController {
     public Object get() {
         Object value = redisUtil.get("ok");
         return value;
+    }
+
+    /**
+     * pageHelper测试
+     * @param apiAcceptObj
+     * @return
+     */
+    @RequestMapping(value = "/testPage", method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ApiReturnObj<Object> testPage(@Validated ApiAcceptObj apiAcceptObj) {
+        return userService.testPage(apiAcceptObj);
     }
 
     /**

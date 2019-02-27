@@ -16,8 +16,7 @@ redis:
 #配置xml文件路径
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-# 分页配置
-pagehelper:
+#pagehelper分页插件:
   helper-dialect: mysql
   reasonable: true
   support-methods-arguments: true

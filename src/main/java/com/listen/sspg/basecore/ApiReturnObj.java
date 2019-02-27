@@ -26,15 +26,10 @@ public class ApiReturnObj<T> implements Serializable {
 	public ApiReturnObj() {
 
 	}
-/*
+
 	public ApiReturnObj(int code, T datas) {
 		super();
 		this.code = code;
-		String message = ErrorCodePropertiesUtil.getErrorCodeValueByKeyI18n(String.valueOf(code));
-		if (message != null && !"".equals(message)) {
-			this.msg = message;
-		}
-
 		if (datas instanceof String || datas instanceof Byte || datas instanceof Short || datas instanceof Integer
 				|| datas instanceof Long || datas instanceof Float || datas instanceof Double
 				|| datas instanceof Boolean) {
@@ -45,7 +40,7 @@ public class ApiReturnObj<T> implements Serializable {
 			this.datas = datas;
 		}
 
-	}*/
+	}
 
 	
 	public ApiReturnObj(int code, String msg, T datas) {

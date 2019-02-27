@@ -1,9 +1,11 @@
 package com.listen.sspg.tools;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.SimpleDateFormatSerializer;
+import com.github.pagehelper.util.StringUtil;
 
 /**
  * @className FastJsonUtil
@@ -61,5 +63,18 @@ public class FastJsonUtil {
             jsonStr = JSON.toJSONString(obj, config, features);
         }
         return jsonStr;
+    }
+
+    public static String analyticJsonObjectStr(String jsonStr, String key) {
+        String val = null;
+        if (!StringUtil.isEmpty(jsonStr) && !StringUtil.isEmpty(key)) {
+            JSONObject jsonObject = JSONObject.parseObject(jsonStr);
+            // 判断key 是否存在
+            if (jsonObject.containsKey(key)) {
+                val = jsonObject.getString(key);
+            }
+        }
+
+        return val;
     }
 }

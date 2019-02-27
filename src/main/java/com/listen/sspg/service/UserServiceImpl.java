@@ -13,12 +13,19 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.listen.sspg.basecore.ApiAcceptObj;
+import com.listen.sspg.basecore.ApiReturnObj;
 import com.listen.sspg.dao.UserMapper;
 import com.listen.sspg.entity.User;
 import com.listen.sspg.iservice.UserService;
+import com.listen.sspg.tools.FastJsonUtil;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem;
+import org.hibernate.validator.internal.util.StringHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -47,6 +54,22 @@ public class UserServiceImpl implements UserService {
     public User getUser(){
         User user = userMapper.selectByPrimaryKey("1");
         return user;
+    }
+
+    public ApiReturnObj<Object> testPage(ApiAcceptObj apiAcceptObj){
+        ApiReturnObj<Object> apiReturnObj = new ApiReturnObj<>(2);
+        String parameterJson = apiAcceptObj.getParameterJson();
+        if (parameterJson != null && !"".equals(parameterJson)) {
+            int pageNum = StringHelper.isNullOrEmptyString(FastJsonUtil.analyticJsonObjectStr(parameterJson, "pageNum")) ? 1
+                    : Integer.valueOf(FastJsonUtil.analyticJsonObjectStr(parameterJson, "pageNum"));
+            int pageSize = StringHelper.isNullOrEmptyString(FastJsonUtil.analyticJsonObjectStr(parameterJson, "pageSize")) ? 20
+                    : Integer.valueOf(FastJsonUtil.analyticJsonObjectStr(parameterJson, "pageSize"));
+            PageHelper.startPage(pageNum,pageSize);
+            List<User> users = userMapper.getAll();
+            PageInfo<User> userPageInfo = new PageInfo<>(users);
+            apiReturnObj = new ApiReturnObj<>(1,userPageInfo);
+        }
+        return apiReturnObj;
     }
 
     public User findByOpenid(String id){

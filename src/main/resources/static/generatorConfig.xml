@@ -27,9 +27,9 @@
         <plugin type="com.listen.generator.method.plugins.MysqlBatchUpdatePlugin"/>
         <!--<plugin type="com.hui.mybatis.plugins.OracleBatchUpdatePlugin"/>-->
         <!--<plugin type="com.hui.mybatis.plugins.BatchDeletePlugin"/>-->
-        <!--去掉注释-->
-        <commentGenerator>
-            <property name="suppressAllComments" value="true"/>
+        <!--注释-->
+        <commentGenerator type="com.listen.generator.method.tools.MyCommentGenerator">
+            <!--<property name="suppressAllComments" value="true"/>-->
         </commentGenerator>
         <!-- mysql 连接配置 -->
         <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
