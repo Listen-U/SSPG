@@ -1,21 +1,12 @@
 package com.listen.sspg.service;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
-import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.listen.sspg.basecore.ApiAcceptObj;
@@ -30,15 +21,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 /**
  * @author Listen
  * @date 2019/2/26
  */
 
-@PropertySource("classpath:static/fileConfig.properties")
 @Service
+@PropertySource("classpath:static/fileConfig.properties")
 public class UserServiceImpl implements UserService {
     @Value("${filePath}")
     private String filePath;

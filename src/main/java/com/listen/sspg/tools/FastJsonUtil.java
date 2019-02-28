@@ -65,6 +65,12 @@ public class FastJsonUtil {
         return jsonStr;
     }
 
+    /**
+     * 从json中解析处某个字段
+     * @param jsonStr
+     * @param key
+     * @return
+     */
     public static String analyticJsonObjectStr(String jsonStr, String key) {
         String val = null;
         if (!StringUtil.isEmpty(jsonStr) && !StringUtil.isEmpty(key)) {
