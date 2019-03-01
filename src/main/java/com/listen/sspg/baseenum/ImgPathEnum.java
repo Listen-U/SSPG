@@ -13,13 +13,13 @@ public enum ImgPathEnum {
     HeadImg("D:\\WXFile\\headImg");
 
 
-    private final String path;
+    private String path;
 
-    ImgPathEnum(final String path) {
+    ImgPathEnum(String path) {
         this.path = path;
     }
 
-    public String getPath(){
+    private String getPath(){
         return path;
     }
 
