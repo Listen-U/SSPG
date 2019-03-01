@@ -10,20 +10,25 @@ public enum ImgPathEnum {
     /**
      * 顶部图片路径
      */
-    HeadImg{
-        @Override
-        public String get() {
-            return "D:\\WXFile\\headImg";
-        }
-    };
+    HeadImg("D:\\WXFile\\headImg");
+
+
+    private final String path;
+
+    ImgPathEnum(final String path) {
+        this.path = path;
+    }
+
+    public String getPath(){
+        return path;
+    }
 
     public static String set(int code){
-        String path = null;
+        String path;
         switch (code){
-            case 1 : path = ImgPathEnum.HeadImg.get();break;
+            case 1 : path = ImgPathEnum.HeadImg.getPath();break;
             default: path = null;
         }
         return path;
     }
-    public abstract String get();
 }
