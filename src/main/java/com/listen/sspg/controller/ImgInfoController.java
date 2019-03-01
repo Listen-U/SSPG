@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 图片管理
- * @author winfo064
+ * @author Listen
  * @className ImgInfoController
  * @date 2019/2/28
  **/
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ImgInfoController {
     @Autowired
     private ImgInfoServiceImpl imgInfoService;
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "/headImgs", method = { RequestMethod.GET, RequestMethod.POST }, produces = "application/json;charset=UTF-8")
     @ResponseBody
